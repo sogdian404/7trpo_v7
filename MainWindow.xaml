@@ -9,40 +9,43 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition  Height="120"></RowDefinition>
+            <RowDefinition  Height="auto"></RowDefinition>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Frame Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden" Source="Pages/MainPage.xaml"/>
 
         <StackPanel Margin="5">
             <TextBox Margin="0 5" md:HintAssist.Hint="Город" x:Name="city" ></TextBox>
-            <TextBox Margin="0 5" md:HintAssist.Hint="минимальный рейтинг" x:Name="minRating" ></TextBox>
+            <TextBox Margin="0 5" md:HintAssist.Hint="Минимальный рейтинг" x:Name="minRating" ></TextBox>
             <Button MinWidth="100" Margin="5 0" Name="Getall" Click="Getall_Click">Обновить список</Button>
         </StackPanel>
         <StackPanel VerticalAlignment="Top" Grid.Column="1" Orientation="Horizontal" Margin="5" Grid.ColumnSpan="2">
-            <Button MinWidth="100" Margin="5 0" Name="Edit">Патч</Button>
-            <Button MinWidth="100" Margin="5 0" Name="Swap">Заменить</Button>
-            <Button MinWidth="100" Margin="5 0" Name="Delete">Удалить</Button> 
+            <Button MinWidth="100" Margin="5 0" Name="Create" Click="Create_Click">Патч</Button>
+            <Button MinWidth="100" Margin="5 0" Name="Edit" Click="Edit_Click">Патч</Button>
+            <Button MinWidth="100" Margin="5 0" Name="Swap" Click="Swap_Click">Заменить</Button>
+            <Button MinWidth="100" Margin="5 0" Name="Delete" Click="Delete_Click">Удалить</Button> 
             
         </StackPanel>
-        <ListView Grid.Row="1" Loaded="ListView_Loaded" ItemsSource="{Binding hotels}" MouseDoubleClick="ListView_MouseDoubleClick" SelectedItem="{Binding hotel}">
+        <ListView Grid.Row="1" Loaded="ListView_Loaded" ItemsSource="{Binding hotels}" MouseDoubleClick="ListView_MouseDoubleClick" SelectedItem="{Binding SelectedHotel, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <StackPanel>
                             <TextBlock Foreground="Red" Text="{Binding Name}"/>
-                            <TextBlock Text="{Binding City}"/>
-                            <TextBlock Text="{Binding Rating}"/>
-                            <TextBlock Text="{Binding PricePerNight}"/>
-                            <TextBlock Text="{Binding IsAvailable}"/>
+                            <TextBlock Text="{Binding City, StringFormat=Город: {0}}"/>
+                            <TextBlock Text="{Binding Rating, StringFormat=Рейтинг: {0}}"/>
+                            <TextBlock Text="{Binding PricePerNight, StringFormat=Цена: {0}}"/>
+                            <TextBlock Text="{Binding IsAvailable, StringFormat=Доступен: {0}}"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden" Source="Pages/MainPage.xaml"/>
+
     </Grid>
 </Window>

@@ -15,20 +15,25 @@
             <RowDefinition />
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition>
+                
+            </ColumnDefinition>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel  Margin="10" Width="300" HorizontalAlignment="Left">
+        <StackPanel Grid.Column="1" DataContext="{Binding hotelTemp}" Margin="10" Width="300" HorizontalAlignment="Left">
             <Label Style="{DynamicResource MaterialDesignLabel}">Выбранный объект</Label>
-            <TextBlock Style="{DynamicResource MaterialDesignTextBlock}" Background="AliceBlue" Margin="0 5" Text="{Binding Name}"></TextBlock>
-            <TextBlock Style="{DynamicResource MaterialDesignTextBlock}" Background="AliceBlue" Margin="0 5" Text="{Binding City}"></TextBlock>
+            <TextBox Style="{DynamicResource MaterialDesignTextBox}" Background="AliceBlue" Margin="0 5" Text="{Binding Name}"></TextBox>
+            <TextBox Style="{DynamicResource MaterialDesignTextBox}" Background="AliceBlue" Margin="0 5" Text="{Binding City}"></TextBox>
             <md:NumericUpDown Minimum="0" Maximum="5" Background="AliceBlue" Margin="0 5" Value="{Binding Rating}"></md:NumericUpDown>
             <md:NumericUpDown Minimum="0" Background="AliceBlue" Margin="0 5" Value="{Binding PricePerNight}"></md:NumericUpDown>
             <StackPanel Background="AliceBlue" Margin="0 5" Orientation="Horizontal">
                 <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="{Binding IsAvailable}"></CheckBox>
                 <Label Style="{DynamicResource MaterialDesignLabel}" Margin="0 5">Доступен</Label>
             </StackPanel>
-            <Button x:Name="edit" Click="edit_Click">Изменить</Button>
+            <Button  Click="edit_Click">Сохранить</Button>
         </StackPanel>
-    
-    
+
     </Grid>
 </Page>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _6_webApi.Models;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +22,15 @@ namespace _7_wpf.Pages
     /// </summary>
     public partial class EditPage : Page
     {
-        public EditPage()
+        public Hotel hotel { get; set; } = new();
+        public EditPage(Hotel h)
         {
             InitializeComponent();
+            hotel = h;
         }
 
         private void edit_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
