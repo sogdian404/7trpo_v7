@@ -29,7 +29,7 @@
             <Button MinWidth="100" Margin="5 0" Name="Delete">Удалить</Button> 
             
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding hotels}" MouseDoubleClick="ListView_MouseDoubleClick" SelectedItem="{Binding hotel}">
+        <ListView Grid.Row="1" Loaded="ListView_Loaded" ItemsSource="{Binding hotels}" MouseDoubleClick="ListView_MouseDoubleClick" SelectedItem="{Binding hotel}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

@@ -24,5 +24,10 @@ namespace _7_wpf.Pages
         {
             InitializeComponent();
         }
+
+        private void edit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

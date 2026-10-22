@@ -1,5 +1,6 @@
 ﻿using _6_webApi.Models;
 
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 
 using System.Collections.ObjectModel;
@@ -22,7 +23,7 @@ namespace _7_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Hotel> hotels { get; set; } = new();
+        public List<Hotel> hotels { get; set; } = new();
         public Hotel? hotel { get; set; } = null;
         public HttpClient client = new HttpClient();
         public HotelApi api;
@@ -32,7 +33,6 @@ namespace _7_wpf
             InitializeComponent();
             client.BaseAddress = new Uri("https://localhost:7126/");
             api = new HotelApi(client);
-            Update();
         }
 
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -44,9 +44,13 @@ namespace _7_wpf
         {
             hotels = await api.GetHotels();
         }
-        private async void Update()
+
+        private async void ListView_Loaded(object sender, RoutedEventArgs e)
         {
             hotels = await api.GetHotels();
+
         }
+
+
     }
 }
