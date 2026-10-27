@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\ixs\7_wpf\obj\Debug\net8.0-windows\
+D:\Projects\Гариев\TRPO\7trpo_v7\obj\Debug\net8.0-windows\
 _7_wpf
 none
 false
-TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\ixs\7_wpf\App.xaml
-4-1287490367
-22-1714709112
-10-1085617130
-362-1386986973
-MainWindow.xaml;Pages\Change.xaml;Pages\EditPage.xaml;Pages\MainPage.xaml;
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+D:\Projects\Гариев\TRPO\7trpo_v7\App.xaml
+3-348202063
+22-236642916
+11-1312338639
+230637811933
+MainWindow.xaml;Pages\EditPage.xaml;Pages\MainPage.xaml;
 
-True
+False
 

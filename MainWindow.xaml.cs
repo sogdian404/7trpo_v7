@@ -24,9 +24,11 @@ namespace _7_wpf
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+        public enum Mode {Create, Put, Patch};
+    /// 
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public enum Mode {Create, Put, Patch};
+
         public ObservableCollection<Hotel> hotels { get; set; } = new();
         private Hotel? _selectedHotel;
         public Hotel? SelectedHotel
@@ -63,6 +65,7 @@ namespace _7_wpf
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
             _client.BaseAddress = new Uri("https://localhost:7126/");
             _api = new HotelApi(_client);
         }
@@ -71,10 +74,10 @@ namespace _7_wpf
         {
             try
             {
-                int? minRating = null;
+                decimal? minRating = null;
                 if (!string.IsNullOrWhiteSpace(MinRatingFilter))
                 {
-                    if (!int.TryParse(MinRatingFilter, out var r) || r < 0 || r > 5)
+                    if (!decimal.TryParse(MinRatingFilter, out var r) || r < 0 || r > 5)
                     {
                         MessageBox.Show("Минимальный рейтинг должен быть числом от 0 до 5");
                         return;
@@ -98,7 +101,7 @@ namespace _7_wpf
         {
             if (SelectedHotel !=null)
             {
-                
+                if (SelectedHotel != null) GoToEdit(SelectedHotel, Mode.Put);
             }
         }
 
@@ -115,33 +118,43 @@ namespace _7_wpf
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-
+            GoToEdit(null, Mode.Create);
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedHotel == null)
+            {
+                MessageBox.Show("Выберите отель.");
+                return;
+            }
 
+            GoToEdit(SelectedHotel, Mode.Patch);
         }
 
         private void Swap_Click(object sender, RoutedEventArgs e)
         {
+            if (SelectedHotel == null)
+            {
+                MessageBox.Show("Выберите отель.");
+                return;
+            }
 
+            GoToEdit(SelectedHotel, Mode.Put);
         }
 
         private async void Delete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (SelectedHotel == null)
+                {
+                    MessageBox.Show("Выберите отель.");
+                    return;
+                }
 
-            
-            if (SelectedHotel == null)
-            {
-                MessageBox.Show("отель не выбран");
-                return;
-            }
-
-            if (MessageBox.Show($"Удалить {SelectedHotel.Name}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
-                return;
+                if (MessageBox.Show($"Удалить {SelectedHotel.Name}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                    return;
 
                 await _api.Delete(SelectedHotel.Id, SelectedHotel);
                 await LoadHotels();
@@ -154,7 +167,8 @@ namespace _7_wpf
 
         private void GoToEdit(Hotel? hotel, Mode mode)
         {
-
+            var newPage = new Pages.EditPage(hotel, _api, mode);
+            MainFrame.Navigate(newPage);
         }
 
 

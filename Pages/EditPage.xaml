@@ -12,28 +12,28 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition>
-                
-            </ColumnDefinition>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1" DataContext="{Binding hotelTemp}" Margin="10" Width="300" HorizontalAlignment="Left">
-            <Label Style="{DynamicResource MaterialDesignLabel}">Выбранный объект</Label>
-            <TextBox Style="{DynamicResource MaterialDesignTextBox}" Background="AliceBlue" Margin="0 5" Text="{Binding Name}"></TextBox>
-            <TextBox Style="{DynamicResource MaterialDesignTextBox}" Background="AliceBlue" Margin="0 5" Text="{Binding City}"></TextBox>
-            <md:NumericUpDown Minimum="0" Maximum="5" Background="AliceBlue" Margin="0 5" Value="{Binding Rating}"></md:NumericUpDown>
-            <md:NumericUpDown Minimum="0" Background="AliceBlue" Margin="0 5" Value="{Binding PricePerNight}"></md:NumericUpDown>
-            <StackPanel Background="AliceBlue" Margin="0 5" Orientation="Horizontal">
-                <CheckBox Style="{DynamicResource MaterialDesignCheckBox}" IsChecked="{Binding IsAvailable}"></CheckBox>
-                <Label Style="{DynamicResource MaterialDesignLabel}" Margin="0 5">Доступен</Label>
-            </StackPanel>
-            <Button  Click="edit_Click">Сохранить</Button>
+        <Border  Grid.Row="0" Background="AliceBlue">
+        <TextBlock  FontSize="18" FontWeight="Bold" Margin="10" Text="{Binding Header}"/>
+        </Border>
+        <Border Grid.Row="1" Background="GhostWhite">
+        <StackPanel  Background="GhostWhite" Margin="10" Width="320" HorizontalAlignment="Left">
+            <TextBox Margin="5" md:HintAssist.Hint="Название" IsReadOnly="{Binding IsReadOnly}" Text="{Binding HotelName, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Margin="5" md:HintAssist.Hint="Город" IsReadOnly="{Binding IsReadOnly}" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
+            <md:NumericUpDown Minimum="0" Maximum="5" Margin="5"  Value="{Binding Rating}"/>
+            <md:NumericUpDown Minimum="0" Margin="5" Value="{Binding PricePerNight}"/>
+            <CheckBox Content="Доступен" Margin="5" IsChecked="{Binding IsAvailable}"/>
         </StackPanel>
-
+        </Border>
+        <Border Grid.Row="2" Background="AliceBlue">
+            <StackPanel  Orientation="Horizontal" Margin="10" VerticalAlignment="Top">
+                <Button MinWidth="120" Margin="10 0" Click="edit_Click">Сохранить</Button>
+                <Button MinWidth="120" Margin="10 0" Click="Cancel_Click">Отмена</Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

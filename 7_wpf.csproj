@@ -11,10 +11,12 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.3.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\6_webApi\6_webApi.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
